@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './NavBar.scss'
 
 const NavBar = () => {
@@ -12,28 +13,28 @@ const NavBar = () => {
       <i className="fa fa-bars menu-toggle" />
       <ul className="nav">
         <li>
-          <a href="#">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="#">Sign Up</a>
+          <Link to="/sign-up">Sign Up</Link>
         </li>
         <li>
-          <a href="#">Login</a>
+          <Link to="/sign-in">Login</Link>
         </li>
         <li>
-          <a href="#">
+          <a href="/dashboard">
             <i className="fa fa-user" />
             Awa Melvine
             <i className="fa fa-chevron-down" style={{ fontSize: ".8em" }} />
           </a>
           <ul>
             <li>
-              <a href="#">Dashboard</a>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <a href="#" className="logout">
+              <Link to="/logout" className="logout">
                 Logout
-              </a>
+              </Link>
             </li>
           </ul>
         </li>
