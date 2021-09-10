@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,19 @@ class PostController extends Controller
     public function getAllPost()
     {
         try {
-            $posts = Post::where('published',true)->with(['category','user'])->get();
+            $posts = Post::where('published',true)->with(['user'])->latest()->get();
+            $slider = Post::where('published',true)->with(['user'])->get()->random(4);
+            $categories = Category::all();
+            foreach ($posts as $key => $value) {
+                $value->created = $value->created_at->isoFormat('Do MMM YY');
+            }
+            foreach ($slider as $key => $value) {
+                $value->created = $value->created_at->isoFormat('Do MMM YY');
+            }
             return \response([
-                'posts' => $posts
+                'posts' => $posts,
+                'slider' => $slider,
+                'categories' => $categories
             ]);
         } catch (\Exception $th) {
             return \response(['message' => $th->getMessage()]);
@@ -21,10 +32,30 @@ class PostController extends Controller
     public function getSinglePost($slug)
     {
         try {
-            //$post = Post::find($slug);
-            $post = Post::where([['slug',$slug],['published',true]])->with(['category','user'])->first();
+            $post = Post::where([['slug',$slug],['published',true]])->with(['user'])->first();
+            $categories = Category::all();
+            $popular = Post::where('published',true)->with(['user'])->get()->random(5);
             return \response([
-                'post' => $post
+                'post' => $post,
+                'categories' => $categories,
+                'popular' => $popular
+            ]);
+        } catch (\Exception $th) {
+            return \response(['message' => $th->getMessage()]);
+        }
+    }
+    public function getPostByCategories($id)
+    {
+        try {
+            $post = Post::where([['category_id',$id],['published',true]])->with(['user'])->get();
+            $slider = Post::where('published',true)->with(['user'])->get()->random(4);
+            $categories = Category::all();
+            $popular = Post::where('published',true)->with(['user'])->get()->random(5);
+            return \response([
+                'posts' => $post,
+                'slider' => $slider,
+                'categories' => $categories,
+                'popular' => $popular
             ]);
         } catch (\Exception $th) {
             return \response(['message' => $th->getMessage()]);

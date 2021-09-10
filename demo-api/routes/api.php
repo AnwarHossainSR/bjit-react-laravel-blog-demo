@@ -12,3 +12,4 @@ Route::get('/posts/{slug}', [PostController::class,'getSinglePost']);
 Route::post('/post', [PostController::class,'store']);
 Route::put('/posts/{id}', [PostController::class,'update']);
 Route::delete('/posts/{id}', [PostController::class,'destroy']);
+Route::get('/posts/category/{id}', [PostController::class,'getPostByCategories']);
