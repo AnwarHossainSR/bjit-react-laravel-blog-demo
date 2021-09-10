@@ -1,89 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Post = () => {
+const Post = (props) => {
+  const posts = props.posts;
   return (
     <>
-      <div className="post clearfix">
-        <img src="images/image_3.png" alt className="post-image" />
-        <div className="post-preview">
-          <h2>
-            <Link to="/blog-detail/test">
-              The strongest and sweetest songs yet remain to be sung
-            </Link>
-          </h2>
-          <i className="far fa-user"> Awa Melvine</i>
-          &nbsp;
-          <i className="far fa-calendar"> Mar 11, 2019</i>
-          <p className="preview-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Exercitationem optio possimus a inventore maxime laborum.
-          </p>
-          <Link to="/blog-detail/test" className="btn read-more">
-            Read More
-          </Link>
-        </div>
-      </div>
-      <div className="post clearfix">
-        <img src="images/image_4.png" alt className="post-image" />
-        <div className="post-preview">
-          <h2>
-            <a href="single.hmtl">
-              The strongest and sweetest songs yet remain to be sung
-            </a>
-          </h2>
-          <i className="far fa-user"> Awa Melvine</i>
-          &nbsp;
-          <i className="far fa-calendar"> Mar 11, 2019</i>
-          <p className="preview-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Exercitationem optio possimus a inventore maxime laborum.
-          </p>
-          <a href="single.html" className="btn read-more">
-            Read More
-          </a>
-        </div>
-      </div>
-      <div className="post clearfix">
-        <img src="images/image_3.png" alt className="post-image" />
-        <div className="post-preview">
-          <h2>
-            <a href="single.hmtl">
-              The strongest and sweetest songs yet remain to be sung
-            </a>
-          </h2>
-          <i className="far fa-user"> Awa Melvine</i>
-          &nbsp;
-          <i className="far fa-calendar"> Mar 11, 2019</i>
-          <p className="preview-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Exercitationem optio possimus a inventore maxime laborum.
-          </p>
-          <a href="single.html" className="btn read-more">
-            Read More
-          </a>
-        </div>
-      </div>
-      <div className="post clearfix">
-        <img src="images/image_3.png" alt className="post-image" />
-        <div className="post-preview">
-          <h2>
-            <a href="single.hmtl">
-              The strongest and sweetest songs yet remain to be sung
-            </a>
-          </h2>
-          <i className="far fa-user"> Awa Melvine</i>
-          &nbsp;
-          <i className="far fa-calendar"> Mar 11, 2019</i>
-          <p className="preview-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Exercitationem optio possimus a inventore maxime laborum.
-          </p>
-          <a href="single.html" className="btn read-more">
-            Read More
-          </a>
-        </div>
-      </div>
+      {!posts && <p className="red">There is no post at this moment</p>}
+      {posts &&
+        posts.map((post, i) => (
+          <div className="post clearfix" key={i}>
+            <img src={post.image} alt="photo" className="post-image" />
+            <div className="post-preview">
+              <h2>
+                <Link to={`/blog-detail/${post.slug}`}>{post.title}</Link>
+              </h2>
+              <i className="far fa-user"> &nbsp; {post.user.name}</i>
+              &nbsp;
+              <i className="far fa-calendar"> &nbsp; {post.created}</i>
+              <p className="preview-text">{post.body.substring(0, 240)}....</p>
+              <Link to={`/blog-detail/${post.slug}`} className="btn read-more">
+                Read More
+              </Link>
+            </div>
+          </div>
+        ) ) }
+     
     </>
   );
 };

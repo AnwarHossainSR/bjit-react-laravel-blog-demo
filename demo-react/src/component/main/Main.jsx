@@ -3,11 +3,11 @@ import Body from "./Body";
 import "./Main.scss";
 import Slide from "./slide/Slide";
 
-const Main = () => {
+const Main = (props) => {
   return (
     <div className="page-wrapper">
-            <Slide />
-            <Body />
+      <Slide sliders={props.data.slider} />
+      <Body posts={props.data.posts} categories={props.data.categories} />
     </div>
   );
 };

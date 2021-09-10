@@ -47,6 +47,7 @@
    .content .main-content .post .post-preview i {
      color: #757575;
      font-size: .8em;
+     //margin-left: 1rem;
    }
    
    .content .main-content .post .preview-text {
@@ -130,4 +131,10 @@
    .content .sidebar .section.topics ul li a:hover {
      padding-left: 10px;
      transition: all 0.3s;
+   }
+
+   .red{
+     color: rgb(179, 13, 13);
+     margin-top: 3rem;
+     text-align: center;
    }

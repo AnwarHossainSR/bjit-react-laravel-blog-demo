@@ -1,43 +1,29 @@
-import React from "react";
-import Categories from '../../../Categories'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Categories from "../../../Categories";
 
-const SideBar = () => {
+const SideBar = ( { categories, popular } ) => {
+  const [populars, setpopular] = useState( [popular] )
+  useEffect(() => {
+    setpopular(popular)
+    return () => {
+    }
+  }, [populars])
   return (
     <div className="sidebar single">
       <div className="section popular">
         <h2 className="section-title">Popular</h2>
-        <div className="post clearfix">
-          <img src="images/image_1.png" alt />
-          <a href className="title">
-            <h4>How to overcome your fears</h4>
-          </a>
-        </div>
-        <div className="post clearfix">
-          <img src="images/image_1.png" alt />
-          <a href className="title">
-            <h4>How to overcome your fears</h4>
-          </a>
-        </div>
-        <div className="post clearfix">
-          <img src="images/image_1.png" alt />
-          <a href className="title">
-            <h4>How to overcome your fears</h4>
-          </a>
-        </div>
-        <div className="post clearfix">
-          <img src="images/image_1.png" alt />
-          <a href className="title">
-            <h4>How to overcome your fears</h4>
-          </a>
-        </div>
-        <div className="post clearfix">
-          <img src="images/image_1.png" alt />
-          <a href className="title">
-            <h4>How to overcome your fears</h4>
-          </a>
-        </div>
+        {popular &&
+          popular.map((post, i) => (
+            <div className="post clearfix" key={i}>
+              <img src={post.image} alt="photo" />
+              <Link to={`/blog-detail/${post.slug}`} className="title">
+                <h4>{post.title}</h4>
+              </Link>
+            </div>
+          ))}
       </div>
-      <Categories />
+      <Categories categories={categories} />
     </div>
   );
 };

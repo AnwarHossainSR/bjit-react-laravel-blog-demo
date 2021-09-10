@@ -24,7 +24,7 @@ const NavBar = () => {
         <li>
           <a href="/dashboard">
             <i className="fa fa-user" />
-            Awa Melvine
+            Anwar Hossain
             <i className="fa fa-chevron-down" style={{ fontSize: ".8em" }} />
           </a>
           <ul>

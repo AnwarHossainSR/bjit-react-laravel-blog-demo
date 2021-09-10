@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-section about">
           <h1 className="logo-text">
-            <span>Awa</span>Inspires
+            <span>Anwar</span>Blog
           </h1>
           <p>
             AwaInspires is a fictional blog conceived for the purpose of a

@@ -1,65 +1,29 @@
 import React from "react";
 import "./Slide.scss";
+import { Link } from "react-router-dom";
 
-const Slide = () => {
+const Slide = (props) => {
+  const data = props.sliders;
   return (
     <div className="post-slider">
       <h1 className="slider-title">Trending Posts</h1>
       <i className="fas fa-chevron-left prev" />
       <i className="fas fa-chevron-right next" />
       <div className="post-wrapper">
-        <div className="post">
-          <img src="images/image_1.png" alt className="slider-image" />
-          <div className="post-info">
-            <h4>
-              <a href="single.html">
-                One day your life will flash before your eyes
-              </a>
-            </h4>
-            <i className="far fa-user"> Awa Melvine</i>
-            &nbsp;
-            <i className="far fa-calendar"> Mar 8, 2019</i>
-          </div>
-        </div>
-        <div className="post">
-          <img src="images/image_1.png" alt className="slider-image" />
-          <div className="post-info">
-            <h4>
-              <a href="single.html">
-                One day your life will flash before your eyes
-              </a>
-            </h4>
-            <i className="far fa-user"> Awa Melvine</i>
-            &nbsp;
-            <i className="far fa-calendar"> Mar 8, 2019</i>
-          </div>
-        </div>
-        <div className="post">
-          <img src="images/image_1.png" alt className="slider-image" />
-          <div className="post-info">
-            <h4>
-              <a href="single.html">
-                One day your life will flash before your eyes
-              </a>
-            </h4>
-            <i className="far fa-user"> Awa Melvine</i>
-            &nbsp;
-            <i className="far fa-calendar"> Mar 8, 2019</i>
-          </div>
-        </div>
-        <div className="post">
-          <img src="images/image_1.png" alt className="slider-image" />
-          <div className="post-info">
-            <h4>
-              <a href="single.html">
-                One day your life will flash before your eyes
-              </a>
-            </h4>
-            <i className="far fa-user"> Awa Melvine</i>
-            &nbsp;
-            <i className="far fa-calendar"> Mar 8, 2019</i>
-          </div>
-        </div>
+        {data &&
+          data.map((post, i) => (
+            <div className="post" key={i}>
+              <img src={post.image} alt="photo" className="slider-image" />
+              <div className="post-info">
+                <h4>
+                  <Link to={`/blog-detail/${post.slug}`}>{post.title}</Link>
+                </h4>
+                <i className="far fa-user">  {post.user.name}</i>
+                &nbsp;
+                <i className="far fa-calendar">  {post.created}</i>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

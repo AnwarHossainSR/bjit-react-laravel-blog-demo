@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Register from "./component/authentication/Register";
 import Login from "./component/authentication/Login";
 import BlogDetails from "./component/main/single/BlogDetails";
+import PostByCategory from "./component/main/common/PostByCategory";
 
 const App = () => {
   return (
@@ -22,8 +23,11 @@ const App = () => {
         <Route exact path="/dashboard">
           <Home />
         </Route>
-        <Route exact path="/blog-detail/test">
+        <Route exact path="/blog-detail/:slug">
           <BlogDetails />
+        </Route>
+        <Route exact path="/category/:id/posts">
+          <PostByCategory />
         </Route>
         <Route exact path="*">
           <BlogDetails />
