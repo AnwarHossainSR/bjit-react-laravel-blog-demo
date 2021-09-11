@@ -1,0 +1,29 @@
+.admin-wrapper {
+     display: flex;
+     height: 100vh;
+
+     .left-sidebar {
+          flex: 2;
+          //height: 100vh;
+          background: #234a57;
+
+          ul {
+               list-style: none;
+               margin: 0;
+               padding: 0;
+               color: aliceblue;
+
+               li {
+                    a {
+                         padding: 18px;
+                         display: block;
+                         border-bottom: 1px solid #004044;
+                    }
+
+                    a:hover {
+                         background: #004044;
+                    }
+               }
+          }
+     }
+}

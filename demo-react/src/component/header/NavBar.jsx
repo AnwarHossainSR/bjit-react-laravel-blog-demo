@@ -29,7 +29,7 @@ const NavBar = () => {
           </a>
           <ul>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/dashboard/posts">Dashboard</Link>
             </li>
             <li>
               <Link to="/logout" className="logout">

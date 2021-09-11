@@ -1,9 +1,10 @@
-import React, { useReducer, useState, useHistory } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useReducer, useState } from "react";
+import { Link,useHistory } from "react-router-dom";
 import Footer from "../footer/Footer";
 import NavBar from "../header/NavBar";
 import "./Auth.scss";
-import {storeSignupApi} from '../../api/Api'
+import { storeApiData } from '../../api/Api'
+import url from '../../config'
 
 const emailReducer = (state, action) => {
   var pattern = new RegExp(
@@ -61,6 +62,7 @@ const nameReducer = (state, action) => {
 
 const Register = () => {
  
+  const [formIsValid, setFormIsValid] = useState(false);
   const [nameState, dispatchName] = useReducer( nameReducer, {
     value: "",
     isValid: null,
@@ -76,11 +78,16 @@ const Register = () => {
     isValid: null,
     type: "",
   } );
-  // const { isValid: nameIsValid } = nameState;
-  // const { isValid: emailIsValid } = emailState;
-  // const { isValid: passwordIsValid } = passwordState;
-  const [error, setErrorMessage] = useState( "" );
+  const { isValid: nameIsValid } = nameState;
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
   const histry = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      histry.push("/");
+    }
+    setFormIsValid(emailIsValid && passwordIsValid);
+  }, [emailIsValid, passwordIsValid, histry]);
 
   const nameChangeHandler = (event) => {
     dispatchName({ type: "name", val: event.target.value });
@@ -97,8 +104,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = { name: nameState.value, email: emailState.value, password: passwordState.value };
-    //await storeSignupApi( user );
-    histry.push("/sigh-in");
+    await storeApiData( `${url.basePublicUrl}/register`,user );
+    histry.push("/sign-in");
   };
 
   return (
@@ -107,9 +114,6 @@ const Register = () => {
       <div className="auth-content">
         <form onSubmit={handleSubmit}>
           <h2 className="form-title">Register</h2>
-          {error && (
-            <span className="error">{error}</span>
-          )}
           <div>
             <label>Name</label>
             <input

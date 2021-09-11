@@ -27,9 +27,9 @@ export const fetchPostByCategory = async (id) => {
   }
 };
 
-export const storeSignupApi = async (user) => {
+export const storeApiData = async (url,user) => {
   try {
-    return await axios.post(`${url}/signup`,user);
+    return await axios.post(url,user);
   } catch (error) {
     return error;
   }

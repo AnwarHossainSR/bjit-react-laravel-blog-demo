@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+//general
+Route::post('/login', [AuthController::class,'login']);
+Route::post('/register', [AuthController::class,'registration']);
 
 Route::get('/posts', [PostController::class,'getAllPost']);
 Route::get('/posts/{slug}', [PostController::class,'getSinglePost']);
