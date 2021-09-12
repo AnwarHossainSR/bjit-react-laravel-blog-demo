@@ -104,7 +104,7 @@ class PostController extends Controller
             }
 
             $post->title = $request->title;
-            $post->slug = $post->slug;
+            $post->slug = strtolower(str_replace('','_',$request->title));
             $post->body = $request->body;
             $post->published = true;
             $post->image = $imageName;
@@ -130,5 +130,32 @@ class PostController extends Controller
         } catch (\Exception $th) {
             return \response(['message' => $th->getMessage()]);
         }
+    }
+
+    public function searchPost($query)
+    {
+         try {
+            $posts = Post::where('title','LIKE','%'.$query.'%')->with(['user'])->get();
+            if(count($posts)){
+                return \response([
+                    'posts' => $posts
+                ]);
+            }else{
+                return [];
+            }
+
+         } catch (\Throwable $th) {
+            return \response(['message' => $th->getMessage()]);
+         }
+        // $data = array();
+        // foreach ($products as $product) {
+        //     $data[] = array('value'=>$product->title,'slug'=>$product->slug);
+        // }
+
+        // if(count($data)){
+        //     return $data;
+        // }else{
+        //     return ['value'=>'No result found','slug'=>''];
+        // }
     }
 }

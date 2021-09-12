@@ -9,7 +9,7 @@ const Post = (props) => {
       {posts &&
         posts.map((post, i) => (
           <div className="post clearfix" key={i}>
-            <img src={post.image} alt="photo" className="post-image" />
+            <img src={`http://localhost:8000/images/posts/${post.image}`} alt="photo" className="post-image" />
             <div className="post-preview">
               <h2>
                 <Link to={`/blog-detail/${post.slug}`}>{post.title}</Link>

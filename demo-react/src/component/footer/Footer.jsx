@@ -10,8 +10,8 @@ const Footer = () => {
             <span>Anwar</span>Blog
           </h1>
           <p>
-            AwaInspires is a fictional blog conceived for the purpose of a
-            tutorial on YouTube. However, Awa has a blog called
+            Anwar's Blog is a fictional blog conceived for the purpose of a
+            tutorial on YouTube. However, it has a blog called
             pieceofadvice.org where he writes truly inspiring stuff.
           </p>
           <div className="contact">
@@ -19,7 +19,7 @@ const Footer = () => {
               <i className="fas fa-phone" /> &nbsp; 123-456-789
             </span>
             <span>
-              <i className="fas fa-envelope" /> &nbsp; info@awainspires.com
+              <i className="fas fa-envelope" /> &nbsp; info@anwarblog.com
             </span>
           </div>
           <div className="socials">

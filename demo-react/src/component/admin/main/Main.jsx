@@ -1,54 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useRouteMatch } from "react-router-dom";
+import CategoryItem from "./CategoryItem";
 import "./Main.scss";
-
-const Main = (props) => {
+import PostItem from "./PostItem";
+import UserItem from "./UserItem";
+const Main = ( props ) => {
+  let { path, url } = useRouteMatch();
   return (
-    <div class="admin-content">
-      <div class="button-group">
-        <Link href="create.html" class="btn btn-big">
-          Add
-        </Link>
-        <Link to={`/dashboard/${props.url}`} class="btn btn-big">
-          {props.title}
-        </Link>
+    <div className="admin-content">
+      <div className="button-group">
+        {props.url == "categories" && (
+          <Link to={`${url}/add-category`} className="btn btn-big">
+            Add Category
+          </Link>
+        )}
+        {props.url == "posts" && (
+          <Link to={`${url}/add-post`} className="btn btn-big">
+            Add
+          </Link>
+        )}
       </div>
 
-      <div class="content">
-        <h2 class="page-title">{props.title}</h2>
-
-        <table>
-          <thead>
-            <th>SN</th>
-            {props.url == "posts" && <th>title</th>}
-            {(props.url == "posts" && <th>Author</th>) || <th>Name</th>}
-            {props.url == "posts" && <th>Status</th>}
-            {props.url == "users" && <th>Role</th>}
-            <th colspan="2">Action</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              {props.url == "posts" && <td>This is my first post</td>}
-              <td>Anwar Hossain</td>
-              {props.url == "posts" && <td>Published</td>}
-              {props.url == "users" && <td>Admin</td>}
-              <td>
-                {props.url == "posts" && (
-                  <Link to="" class="edit">
-                    Unpublish
-                  </Link>
-                )}
-                <Link to="" class="delete">
-                  edit
-                </Link>
-                <Link to="" class="edit">
-                  delete
-                </Link>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="content">
+        <h2 className="page-title">{props.title}</h2>
+        {props.url == "categories" && <CategoryItem categories={props.data} />}
+        {props.url == "posts" && <PostItem posts={props.data.posts} />}
+        {props.url == "users" && <UserItem users={props.data} />}
       </div>
     </div>
   );

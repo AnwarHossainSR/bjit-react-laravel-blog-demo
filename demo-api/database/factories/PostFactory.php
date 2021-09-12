@@ -27,7 +27,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(3,false),
             'slug' => $this->faker->unique()->slug,
             'body' => $this->faker->text(1000),
-            'published' => $this->faker->randomElement([true,false]),
+            'published' => $this->faker->randomElement([true]),
             'image' => $this->faker->imageUrl(500,400),
             'user_id' => $this->faker->randomElement(User::where('status',true)->pluck('id')->toArray()),
             'category_id' => $this->faker->randomElement(Category::pluck('id')->toArray()),

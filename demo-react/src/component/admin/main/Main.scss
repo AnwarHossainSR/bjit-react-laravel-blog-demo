@@ -29,19 +29,24 @@
           color: red;
           margin: 0 1rem;
         }
-        
-.edit:hover,
-.delete:hover,
-.publish:hover {
-  text-decoration: underline;
-}
+
+        .edit:hover,
+        .delete:hover,
+        .publish:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
 }
+
 .publish {
   color: blue;
 }
+.center{
+  text-align: center;
+}
+
 form div {
   margin-bottom: 15px;
 }

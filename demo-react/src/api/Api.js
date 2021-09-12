@@ -2,10 +2,11 @@ import axios from "axios";
 import Url from '../config'
 
 let url = Url.basePublicUrl;
-export const fetchAll = async () => {
+export const fetchAll = async (url) => {
   
   try {
-    return await axios.get(`${url}/posts`);
+    return await axios.get( `${url}` );
+    
   } catch (error) {
        return error;
   }
@@ -27,9 +28,35 @@ export const fetchPostByCategory = async (id) => {
   }
 };
 
-export const storeApiData = async (url,user) => {
+//reusable
+
+
+export const storeApiData = async (url,data) => {
   try {
-    return await axios.post(url,user);
+    return await axios.post(url,data);
+  } catch (error) {
+    return error;
+  }
+};
+export const updateApiData = async (url,data) => {
+  try {
+    return await axios.put(url,data);
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getSingleApiData = async (url) => {
+  try {
+    return await axios.get(url);
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteApiData = async (url) => {
+  try {
+    return await axios.delete(url);
   } catch (error) {
     return error;
   }

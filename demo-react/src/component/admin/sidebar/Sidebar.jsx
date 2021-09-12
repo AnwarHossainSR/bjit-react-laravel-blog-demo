@@ -4,7 +4,7 @@ import "./Sidebar.scss";
 
 const Sidebar = () => {
   return (
-    <div class="left-sidebar">
+    <div className="left-sidebar">
       <ul>
         <li>
           <Link to="/dashboard/posts">Manage Posts</Link>

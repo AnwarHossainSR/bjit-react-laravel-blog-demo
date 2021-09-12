@@ -13,7 +13,7 @@ const Slide = (props) => {
         {data &&
           data.map((post, i) => (
             <div className="post" key={i}>
-              <img src={post.image} alt="photo" className="slider-image" />
+              <img src={`http://localhost:8000/images/posts/${post.image}`} alt="photo" className="slider-image" />
               <div className="post-info">
                 <h4>
                   <Link to={`/blog-detail/${post.slug}`}>{post.title}</Link>

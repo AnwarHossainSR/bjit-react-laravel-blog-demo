@@ -5,6 +5,7 @@ import NavBar from "../header/NavBar";
 import "./Auth.scss";
 import { storeApiData } from '../../api/Api'
 import url from '../../config'
+import { toast } from 'react-toastify';
 
 const emailReducer = (state, action) => {
   var pattern = new RegExp(
@@ -83,7 +84,7 @@ const Register = () => {
   const { isValid: passwordIsValid } = passwordState;
   const histry = useHistory();
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("isLoggedIn")) {
       histry.push("/");
     }
     setFormIsValid(emailIsValid && passwordIsValid);
@@ -104,7 +105,17 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = { name: nameState.value, email: emailState.value, password: passwordState.value };
-    await storeApiData( `${url.basePublicUrl}/register`,user );
+    await storeApiData( `${url.basePublicUrl}/register`, user );
+    toast.success('Registration successfull', {
+      position: "top-right",
+      autoClose: 8000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme:'dark',
+      progress: undefined,
+    });
     histry.push("/sign-in");
   };
 

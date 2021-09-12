@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import './NavBar.scss'
+import AuthContext from "../../store/AuthContext";
+import "./NavBar.scss";
 
 const NavBar = () => {
+  const ctx = useContext( AuthContext );
+  const authenticated = localStorage.getItem( "isLoggedIn" );
   return (
     <header>
       <div className="logo">
@@ -15,29 +18,35 @@ const NavBar = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/sign-up">Sign Up</Link>
-        </li>
-        <li>
-          <Link to="/sign-in">Login</Link>
-        </li>
-        <li>
-          <a href="/dashboard">
-            <i className="fa fa-user" />
-            Anwar Hossain
-            <i className="fa fa-chevron-down" style={{ fontSize: ".8em" }} />
-          </a>
-          <ul>
+        {  !authenticated && (
+          <>
             <li>
-              <Link to="/dashboard/posts">Dashboard</Link>
+              <Link to="/sign-up">Sign Up</Link>
             </li>
             <li>
-              <Link to="/logout" className="logout">
-                Logout
-              </Link>
+              <Link to="/sign-in">Login</Link>
             </li>
-          </ul>
-        </li>
+          </>
+        )}
+        {authenticated && (
+          <li>
+            <a href="/dashboard">
+              <i className="fa fa-user" />
+              Anwar Hossain
+              <i className="fa fa-chevron-down" style={{ fontSize: ".8em" }} />
+            </a>
+            <ul>
+              <li>
+                <Link to="/dashboard/posts">Dashboard</Link>
+              </li>
+              <li>
+                <Link to="#" onClick={ctx.onLogout} className="logout">
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          </li>
+        )}
       </ul>
     </header>
   );
