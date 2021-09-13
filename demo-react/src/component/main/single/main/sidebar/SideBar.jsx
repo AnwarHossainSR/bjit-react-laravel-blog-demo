@@ -16,7 +16,7 @@ const SideBar = ( { categories, popular } ) => {
         {popular &&
           popular.map((post, i) => (
             <div className="post clearfix" key={i}>
-              <img src={post.image} alt="photo" />
+              <img src={`http://localhost:8000/images/posts/${post.image}`} alt="photo" />
               <Link to={`/blog-detail/${post.slug}`} className="title">
                 <h4>{post.title}</h4>
               </Link>

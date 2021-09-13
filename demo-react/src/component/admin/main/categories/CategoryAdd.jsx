@@ -29,7 +29,8 @@ const descriptionReducer = (state, action) => {
   return { value: action.val, isValid: true, type: action.type };
 };
 const CategoryAdd = () => {
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [formIsValid, setFormIsValid] = useState( false );
+  const user = JSON.parse(localStorage.getItem("user-info"))
   const [nameState, dispatchName] = useReducer(nameReducer, {
     value: "",
     isValid: null,
@@ -83,6 +84,19 @@ const CategoryAdd = () => {
         theme:'dark',
         progress: undefined,
       });
+    }
+    if ( user && user.admin == 0 ) {
+      toast.error('you have not permission to access admin panel !', {
+        position: "top-right",
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme:'dark',
+        progress: undefined,
+      });
+      histry.push( "/" );
     }
   }, [])
   return (

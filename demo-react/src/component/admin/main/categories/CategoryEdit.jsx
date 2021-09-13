@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const CategoryEdit = () => {
   const { slug } = useParams();
-
+  const user = JSON.parse(localStorage.getItem("user-info"))
   const histry = useHistory();
   const [data, setDost] = useState([]);
   const [name, setName] = useState("");
@@ -17,6 +17,19 @@ const CategoryEdit = () => {
   useEffect( () => {
     if (!localStorage.getItem("isLoggedIn")) {
       histry.push( "/sign-in" );
+    }
+    if ( user && user.admin == 0 ) {
+      toast.error('you have not permission to access admin panel !', {
+        position: "top-right",
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme:'dark',
+        progress: undefined,
+      });
+      histry.push( "/" );
     }
     const fetch = async () => {
       const data = await (await getSingleApiData(`${url.basePublicUrl}/categories/${slug}`)).data.categories;

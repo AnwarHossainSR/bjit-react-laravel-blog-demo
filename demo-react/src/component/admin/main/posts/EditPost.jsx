@@ -16,11 +16,26 @@ const AddPost = () => {
   const [title, settitle] = useState("");
   const [body, setbody] = useState("");
   const histry = useHistory();
+  const user = JSON.parse(localStorage.getItem("user-info"))
 
   useEffect(() => {
     if (!localStorage.getItem("isLoggedIn")) {
       histry.push("/sign-in");
     }
+    if ( user && user.admin == 0 ) {
+      toast.error('you have not permission to access admin panel !', {
+        position: "top-right",
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme:'dark',
+        progress: undefined,
+      });
+      histry.push( "/" );
+    }
+
     const catFetch = async () => {
       setCategory(
         await (

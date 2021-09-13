@@ -6,6 +6,7 @@ import "./NavBar.scss";
 const NavBar = () => {
   const ctx = useContext( AuthContext );
   const authenticated = localStorage.getItem( "isLoggedIn" );
+  const user = JSON.parse(localStorage.getItem("user-info"))
   return (
     <header>
       <div className="logo">
@@ -32,7 +33,7 @@ const NavBar = () => {
           <li>
             <a href="/dashboard">
               <i className="fa fa-user" />
-              Anwar Hossain
+              {user && user.name}
               <i className="fa fa-chevron-down" style={{ fontSize: ".8em" }} />
             </a>
             <ul>
