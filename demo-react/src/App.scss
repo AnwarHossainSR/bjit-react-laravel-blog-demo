@@ -68,20 +68,6 @@ a {
   font-family: 'Lora', serif;
 }
 
-.msg {
-  width: 100%;
-  margin: 5px auto;
-  padding: 8px;
-  border-radius: 5px;
-  list-style: none;
-}
-
-.success {
-  color: #3a6e3a;
-  border: 1px solid #3a6e3a;
-  background: #bcf5bc;
-}
-
 .error {
   color: #ce1d1d;
   text-align: left;
@@ -94,7 +80,6 @@ a {
 
   .auth-content {
     width: 90%;
-
   }
 
   .content .main-content.single {

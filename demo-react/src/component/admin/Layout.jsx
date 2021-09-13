@@ -5,12 +5,23 @@ import Sidebar from "./sidebar/Sidebar";
 import config from '../../config'
 import { fetchAll } from "../../api/Api";
 import { useHistory } from "react-router";
+import { toast } from 'react-toastify';
 
 const Layout = ( props ) => {
   const histry = useHistory()
   const [data, setData] = useState( [] );
   useEffect( () => {
-    if (!localStorage.getItem("isLoggedIn")) {
+    if ( !localStorage.getItem( "isLoggedIn" ) ) {
+      toast.error('Please login first!', {
+        position: "top-right",
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme:'dark',
+        progress: undefined,
+      });
       histry.push( "/sign-in" );
     }
     const fetchApiData = async () => {

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { deleteApiData,fetchAll } from '../../../api/Api'
 import url from "../../../config";
 import { toast } from 'react-toastify';
 
 const CategoryItem = ( props ) => {
-  const histry = useHistory();
 
   const [data, setdata] = useState( [] );
   useEffect( () => {

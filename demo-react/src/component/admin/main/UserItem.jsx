@@ -6,7 +6,6 @@ const UserItem = (props) => {
   useEffect(() => {
     setdata(props.users.users);
   }, [props] );
-     //console.log(data)
   return (
     <table>
       <thead>
@@ -37,4 +36,4 @@ const UserItem = (props) => {
   );
 };
 
-export default UserItem;
+export default React.memo(UserItem);

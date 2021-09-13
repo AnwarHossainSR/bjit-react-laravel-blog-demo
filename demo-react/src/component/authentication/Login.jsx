@@ -97,7 +97,7 @@ const Login = () => {
     } else {
       setError( "Please provide valid input" );
       toast.error('Please provie all valid input!', {
-        position: "bottom-right",
+        position: "top-right",
         autoClose: 8000,
         hideProgressBar: false,
         closeOnClick: true,

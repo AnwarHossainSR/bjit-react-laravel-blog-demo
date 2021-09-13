@@ -38,7 +38,7 @@ const AddPost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = JSON.parse(localStorage.getItem("user-info"))
+    const user = JSON.parse(localStorage.getItem("user-info"));
     const formData = new FormData();
     formData.append("title", title);
     formData.append("body", body);
@@ -47,10 +47,19 @@ const AddPost = () => {
     formData.append("user_id", user.id);
     await storeApiData(`${url.basePublicUrl}/posts/${data.id}`, formData).then(
       (res) => {
-        console.log(res);
+        toast.success("post updated successfully!", {
+          position: "bottom-right",
+          autoClose: 8000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+          progress: undefined,
+        });
       }
     );
-    toast.success("post updated successfully!");
+    
     histry.push("/dashboard/posts");
   };
 

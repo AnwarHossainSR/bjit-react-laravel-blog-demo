@@ -10,10 +10,10 @@ const Sidebar = () => {
           <Link to="/dashboard/posts">Manage Posts</Link>
         </li>
         <li>
-          <Link to="/dashboard/users">Manage Users</Link>
+          <Link to="/dashboard/categories">Manage Categories</Link>
         </li>
         <li>
-          <Link to="/dashboard/categories">Manage Categories</Link>
+          <Link to="/dashboard/users">Manage Users</Link>
         </li>
       </ul>
     </div>

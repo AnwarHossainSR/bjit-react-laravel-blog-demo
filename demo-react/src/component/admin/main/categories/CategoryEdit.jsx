@@ -5,6 +5,7 @@ import Sidebar from "../../sidebar/Sidebar";
 import "../Main.scss";
 import { getSingleApiData,updateApiData } from "../../../../api/Api";
 import url from "../../../../config";
+import { toast } from "react-toastify";
 
 const CategoryEdit = () => {
   const { slug } = useParams();
@@ -31,7 +32,20 @@ const CategoryEdit = () => {
           name: name,
           description: description,
         };
-    await updateApiData(`${url.basePublicUrl}/categories/${data.id}`, category);
+    await updateApiData( `${url.basePublicUrl}/categories/${data.id}`, category ).then(
+      (res) => {
+        toast.success("Category updated successfully!", {
+          position: "bottom-right",
+          autoClose: 8000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+          progress: undefined,
+        });
+      }
+    );
     histry.push("/dashboard/categories");
   };
   return (
